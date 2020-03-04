@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    paths:
+    - '.github/workflows/**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    env:
+      Auth: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: 'master'
+        fetch-depth: '0'
+    - name: Clone the initial
+      run: git clone https://$Auth@github.com/rokibhasansagar/rx5-dts.git
+    - name: Add and Push first
+      run: |
+        cd rx5-dts/
+        cp -a ../Stock/* .
+        git add -A
+        git commit -m "first commit"
+        git push -u origin master
+        cd -
+    - name: Push second
+      run: |
+        cd rx5-dts/
+        rm -f *
+        cp -a ../Updated/* .
+        git add -A
+        git commit -m "second commit"
+        git push -u origin master
+        cd -
+    - name: Push third
+      run: |
+        cd rx5-dts/
+        rm -f *
+        cp -a ../Latest/* .
+        git add -A
+        git commit -m "third commit"
+        git push -u origin master
+        cd -
