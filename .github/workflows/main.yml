@@ -18,7 +18,7 @@ jobs:
       with:
         ref: 'master'
         fetch-depth: '0'
-    - name: Clone the initial
+    - name: Clone the initial empty repo
       run: git clone https://$Auth@github.com/rokibhasansagar/rx5-dts.git
     - name: Add and Push first
       run: |
