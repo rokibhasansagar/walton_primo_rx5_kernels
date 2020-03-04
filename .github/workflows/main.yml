@@ -19,7 +19,10 @@ jobs:
         ref: 'master'
         fetch-depth: '0'
     - name: Clone the initial empty repo
-      run: git clone https://$Auth@github.com/rokibhasansagar/rx5-dts.git
+      run: |
+        git config --global user.email "rokibhasansagar2014@outlook.com"
+        git config --global user.name "rokibhasansagar"
+        git clone https://$Auth@github.com/rokibhasansagar/rx5-dts.git
     - name: Add and Push first
       run: |
         cd rx5-dts/
